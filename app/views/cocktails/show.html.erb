@@ -1,0 +1,32 @@
+<div class="container pad20">
+
+  <!-- Heading -->
+  <h1 class="text-underline"> <%= @cocktail.name %> </h1>
+
+  <!-- Ingredient heading -->
+  <div class="pad10">
+    <% if @cocktail.doses.empty? %>
+    <p class="text-gray">
+      No ingredients yet. Add yours!
+    </p>
+    <% else %>
+    <h3> Ingredients </h2>
+      <% end %>
+  </div>
+
+  <!-- Ingredient list -->
+  <ul class="list-unstyled pad20">
+    <% @cocktail.doses.each do |d| %>
+    <li>
+      <i class="fa fa-glass"></i> <strong> <%= d.ingredient.name %> </strong>
+      <%= link_to "Delete", dose_path(d), class: "btn btn-danger btn-xs", method: :delete  %>
+    </li>
+    <p class="pad10"><%= d.description %></p>
+    <% end %>
+  </ul>
+  <div class="pad20">
+    <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-primary", id: "ingredient-add-button"%>
+    <%= link_to "Go back", cocktails_path, class: "btn btn-warning" %>
+  </div>
+
+</div>
